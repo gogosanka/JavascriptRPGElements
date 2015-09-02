@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1 id="health">My First Web Page</h1>
+<p id="demo2">My First RPG in JS.</p>
+
+
+
+<script>
+var baseLife = 200;
+var dmgAmount = 21;
+var intAmount = 20.70000001 *.037;
+var currentLife = this.baseLife;
+
+
+function life() {
+document.getElementById("demo").innerHTML = (this.currentLife) + " HP";
+};
+
+function destroyHP() {
+if ((this.currentLife - this.dmgAmount) > 0) {
+this.currentLife -= this.dmgAmount;
+} else if ((this.currentLife - this.dmgAmount) <= 0) {
+this.currentLife = 0;
+}
+
+document.getElementById("health").innerHTML = (this.currentLife) + " HP";
+};
+
+function healHP(amount) {
+if ((this.currentLife += this.intAmount) > this.baseLife) {
+this.currentLife = this.baseLife;
+} else if ((this.currentLife += this.intAmount) <= this.baseLife) {
+this.currentLife += this.intAmount;
+}
+
+document.getElementById("health").innerHTML = (this.currentLife) + " HP";
+};
+
+document.getElementById("health").innerHTML = (this.currentLife) + " HP";
+</script>
+<button type="button" onclick="life()">Stats</button>
+<button type="button" onclick="destroyHP()">Attack</button>
+<button type="button" onclick="healHP(1)">Heal</button>
+</body>
+</html> 
