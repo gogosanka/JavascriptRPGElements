@@ -4,44 +4,65 @@
 
 <h1 id="health">My First Web Page</h1>
 <p id="demo2">My First RPG in JS.</p>
-
+<div id="demo">Hello</div>
 
 
 <script>
-var baseLife = 200;
-var dmgAmount = 21;
-var intAmount = 20.70000001 *.037;
-var currentLife = this.baseLife;
+var maxHP = 200;
+var dmgAmount = 1;
+var heal = 10.0007;
+var intAmount = heal *.037;
+var healingAmount = heal + intAmount;
+var currentLife = this.maxHP;
 
+var regenRunning = "OFF";
+var myVar;
 
 function life() {
-document.getElementById("demo").innerHTML = (this.currentLife) + " HP";
+  document.getElementById("demo").innerHTML = (this.currentLife) + " HP";
 };
 
 function destroyHP() {
-if ((this.currentLife - this.dmgAmount) > 0) {
-this.currentLife -= this.dmgAmount;
-} else if ((this.currentLife - this.dmgAmount) <= 0) {
-this.currentLife = 0;
+  if ((this.currentLife - this.dmgAmount) > 0) {
+    this.currentLife -= this.dmgAmount;
+  } else if ((this.currentLife - this.dmgAmount) <= 0) {
+    this.currentLife = 0;
 }
 
 document.getElementById("health").innerHTML = (this.currentLife) + " HP";
 };
 
-function healHP(amount) {
-if ((this.currentLife += this.intAmount) > this.baseLife) {
-this.currentLife = this.baseLife;
-} else if ((this.currentLife += this.intAmount) <= this.baseLife) {
-this.currentLife += this.intAmount;
+function healHP() {
+  if ((this.currentLife + this.healingAmount) >= this.maxHP) {
+    this.currentLife = this.maxHP;
+  } else if ((this.currentLife < this.maxHP) && (this.currentLife + this.healingAmount) <= (this.maxHP)) {
+    this.currentLife += this.healingAmount;
 }
 
 document.getElementById("health").innerHTML = (this.currentLife) + " HP";
 };
 
+function myStopFunction() {
+  clearInterval(this.myVar);
+}
+
+function regenerate() {
+  if (this.regenRunning == "ON") {
+    this.regenRunning = "OFF"; clearInterval(this.myVar); document.getElementById("demo").innerHTML = this.regenRunning;
+  } else { 
+    this.regenRunning = "ON"; this.myVar = setInterval(function() {healHP()}, 1000); document.getElementById("demo").innerHTML = this.regenRunning;
+  };
+};
+
+document.getElementById("demo").innerHTML = (this.regenRunning);
 document.getElementById("health").innerHTML = (this.currentLife) + " HP";
 </script>
+
 <button type="button" onclick="life()">Stats</button>
 <button type="button" onclick="destroyHP()">Attack</button>
-<button type="button" onclick="healHP(1)">Heal</button>
+<button type="button" onclick="healHP()">Heal</button>
+<button onclick="regenerate()">Regenerate I</button>
+<button onclick="myStopFunction()">Stop Regenerate I</button>
+
 </body>
 </html> 
