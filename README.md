@@ -1,4 +1,4 @@
-# Javascript RPG Elements
+# Javascript RPG Elements v0.0.1
 designed by Jeffrey Jean-Pierre
 
 Table of Contents:
